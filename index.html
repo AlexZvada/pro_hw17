@@ -57,13 +57,13 @@
             },
 
             summary() {
-                let sumVisiting = this[average](this.visiting);
-                let sumMarks = this[average](this.marks);
+                let averageVisiting = this[average](this.visiting);
+                let averageMarks = this[average](this.marks);
 
-                if (sumVisiting >= 0.9 && sumMarks >= 9) {
+                if (averageVisiting >= 0.9 && averageMarks >= 9) {
                     return console.log('Ути какой молодчинка! ' + this.name);
                 }
-                if (sumVisiting <= 0.9 && sumMarks <= 9) {
+                if (averageVisiting <= 0.9 && averageMarks <= 9) {
                     return console.log('Редиска! ' + this.name);
                 }
                 return console.log('Норм, но можно лучше ' + this.name);
