@@ -39,7 +39,7 @@
             },
 
             absent() {
-                let index = this[find](this.marks);
+                let index = this[find](this.visiting);
 
                 if (index >= 0) {
                     return this.visiting[index] = false;
