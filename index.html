@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        'use strict'
+
+        function Student(name, surname, bday) {
+            this.name = name;
+            this.surname = surname;
+            this.bday = bday;
+            this.visiting = [];
+            this.visiting.length = 10;
+            this.marks = [];
+            this.marks.length = 10;
+        }
+
+        Student.prototype = {
+            age() {
+                return new Date().getFullYear() - this.bday;
+            },
+
+            averageScore() {
+                return this.name + '\n' + 'Средний бал: ' + this[average](this.marks);
+
+            },
+
+            present() {
+                let index = this[find](this.visiting);
+
+                if (index >= 0) {
+                    return this.visiting[index] = true;
+                }
+            },
+
+            absent() {
+                let index = this[find](this.marks);
+
+                if (index >= 0) {
+                    return this.visiting[index] = false;
+                }
+            },
+
+            mark(mark) {
+                let index = this[find](this.marks);
+
+                if ((index >= 0) && ((mark >= 0) && (mark <= 10))) {
+                    return this.marks[index] = mark;
+                }
+            },
+
+            summary() {
+                let sumVisiting = this[average](this.visiting);
+                let sumMarks = this[average](this.marks);
+
+                if (sumVisiting >= 0.9 && sumMarks >= 9) {
+                    return console.log('Ути какой молодчинка! ' + this.name);
+                }
+                if (sumVisiting <= 0.9 && sumMarks <= 9) {
+                    return console.log('Редиска! ' + this.name);
+                }
+                return console.log('Норм, но можно лучше ' + this.name);
+            }
+        }
+        const find = Symbol('find');
+        const average = Symbol('average');
+        Student.prototype[find] = (el) => {
+            return el.findIndex(x => x === undefined)
+        }
+        Student.prototype[average] = (el) => {
+            return el.reduce((acc, x) => acc + (x / el.length), 0)
+        }
+
+        const leon = new Student('Leon', 'Carser', 1998);
+        const irma = new Student('Irma', 'Strong', 2002);
+
+        leon.present();
+        leon.present();
+        leon.present();
+        leon.present();
+        leon.absent();
+        leon.absent();
+        leon.absent();
+        leon.absent();
+        leon.absent();
+        leon.absent();
+        leon.present()
+        leon.mark(5);
+        leon.mark(8);
+        leon.mark(6);
+        leon.mark(7);
+        leon.mark(2);
+        leon.mark(8);
+        leon.mark(5);
+        leon.mark(1);
+        leon.mark(9);
+        leon.mark(10);
+
+        irma.present();
+        irma.present();
+        irma.present();
+        irma.present();
+        irma.present();
+        irma.present();
+        irma.present();
+        irma.present();
+        irma.present();
+        irma.present();
+        irma.present();
+        irma.present();
+        irma.mark(10);
+        irma.mark(10);
+        irma.mark(10);
+        irma.mark(10);
+        irma.mark(10);
+        irma.mark(10);
+        irma.mark(10);
+        irma.mark(10);
+        irma.mark(10);
+        irma.mark(10);
+
+        console.log(leon);
+        console.log(irma);
+
+        console.log(leon.averageScore());
+        console.log(irma.averageScore());
+
+        leon.summary();
+        irma.summary();
+
+        console.log(leon.age());
+        console.log(irma.age());
+
+
+    </script>
+</body>
+
+</html>
