@@ -16,10 +16,8 @@
             this.name = name;
             this.surname = surname;
             this.bday = bday;
-            this.visiting = [];
-            this.visiting.length = 10;
-            this.marks = [];
-            this.marks.length = 10;
+            this.visiting = new Array(10);
+            this.marks = new Array(10);
         }
 
         Student.prototype = {
